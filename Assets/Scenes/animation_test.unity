@@ -813,6 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
+  moveSpeedMultiplier: 1
   drag: 8
   playerInput: {fileID: 0}
   moveInput: {x: 0, y: 0}
