@@ -1222,6 +1222,7 @@ MonoBehaviour:
   AttackCooldown: 1
   MaxCharge: 0.5
   AttackSound: {fileID: 0}
+  Decal: {fileID: 2006233356}
   attackAction:
     m_Name: Attack
     m_Type: 1
@@ -1403,7 +1404,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006233354}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
