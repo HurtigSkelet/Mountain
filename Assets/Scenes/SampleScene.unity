@@ -781,6 +781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
+  moveSpeedMultiplier: 1
   drag: 8
   playerInput: {fileID: 0}
   moveInput: {x: 0, y: 0}
@@ -1178,6 +1179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1163389244}
+  - component: {fileID: 1163389245}
   m_Layer: 0
   m_Name: Polearm
   m_TagString: Untagged
@@ -1201,6 +1203,43 @@ Transform:
   - {fileID: 2006233355}
   m_Father: {fileID: 735239746}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1163389245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163389243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3721f890cff11e34083a3049b9a8accc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hitbox: {fileID: 0}
+  Damage: 10
+  MinDamage: 3
+  KnockbackForce: 5
+  AttackCooldown: 1
+  MaxCharge: 0.5
+  AttackSound: {fileID: 0}
+  attackAction:
+    m_Name: Attack
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: ea9307f0-ff37-4358-8c3b-2a1fa3a66f01
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 70ba776d-0034-42ff-852d-9ce027d6057a
+      m_Path: <Gamepad>/buttonWest
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Attack
+      m_Flags: 0
+    m_Flags: 0
+  playerMovement: {fileID: 735239741}
 --- !u!1 &1393123995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,7 +1287,6 @@ GameObject:
   - component: {fileID: 1722212137}
   - component: {fileID: 1722212140}
   - component: {fileID: 1722212139}
-  - component: {fileID: 1722212138}
   m_Layer: 0
   m_Name: Eyes
   m_TagString: Untagged
@@ -1271,27 +1309,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 735239746}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1722212138
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722212136}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1722212139
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1398,7 +1415,7 @@ MonoBehaviour:
   m_EndAngleFade: 180
   m_UVScale: {x: 1, y: 1}
   m_UVBias: {x: 0, y: 0}
-  m_DecalLayerMask: 1
+  m_DecalLayerMask: 256
   m_ScaleMode: 1
   m_Offset: {x: 0, y: 0, z: 0}
   m_Size: {x: 1, y: 1, z: 1}
@@ -1418,7 +1435,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1493,7 +1510,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 878d8c23ad27e5048a54e6a182f918b2, type: 2}

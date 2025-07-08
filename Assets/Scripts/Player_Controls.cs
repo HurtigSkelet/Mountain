@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class Player_Movement : MonoBehaviour
 {
     public float moveSpeed = 4f;         // Max speed
+    public float moveSpeedMultiplier = 1f;
     public float drag = 8f;              // How quickly you slow down
 
     private Rigidbody rb;
@@ -60,9 +61,16 @@ public class Player_Movement : MonoBehaviour
     {
         // Only set the horizontal velocity, keep y for gravity/knockback
         Vector3 velocity = rb.linearVelocity;
-        Vector3 targetVelocity = inputDirection * moveSpeed;
+        Vector3 targetVelocity = inputDirection * moveSpeed * moveSpeedMultiplier;
         velocity.x = targetVelocity.x;
         velocity.z = targetVelocity.z;
         rb.linearVelocity = velocity;
+
+        // Face movement direction if moving
+        Vector3 lookDir = new Vector3(inputDirection.x, 0, inputDirection.z);
+        if (lookDir.sqrMagnitude > 0.001f)
+        {
+            transform.rotation = Quaternion.LookRotation(lookDir);
+        }
     }
 }
