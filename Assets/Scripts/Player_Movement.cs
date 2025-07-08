@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player_Movement : MonoBehaviour
@@ -10,18 +11,32 @@ public class Player_Movement : MonoBehaviour
     private Vector3 inputDirection;
     private Camera mainCam;
 
+    [SerializeField]
+    PlayerInput playerInput;
+    [SerializeField]
+    Vector2 moveInput;
+
     void Start()
     {
+        playerInput = GetComponent<PlayerInput>();
+        playerInput.actions["Move"].performed += OnMove;
+        playerInput.actions["Move"].canceled += OnMove;
         rb = GetComponent<Rigidbody>();
         rb.linearDamping = drag;
         mainCam = Camera.main;
     }
 
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+
     void Update()
     {
         // Get input
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float h = moveInput.x; // Horizontal input
+        float v = moveInput.y; // Vertical input
 
         // Camera-relative movement
         if (mainCam != null)
