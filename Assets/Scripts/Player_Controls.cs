@@ -17,14 +17,42 @@ public class Player_Movement : MonoBehaviour
     [SerializeField]
     Vector2 moveInput;
 
+
+    [Header("animation")]
+    [SerializeField]
+    Animator animator;
+    [SerializeField]
+    string runningAnimationName = "Running";
+
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         playerInput.actions["Move"].performed += OnMove;
         playerInput.actions["Move"].canceled += OnMove;
+
+        
+
+       
         rb = GetComponent<Rigidbody>();
         rb.linearDamping = drag;
         mainCam = Camera.main;
+    }
+
+    public void onAttackCanelled(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            // Handle attack cancel logic here
+            Debug.Log("Attack canceled");
+        }
+    }
+    public void Onattack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            // Handle attack logic here
+            Debug.Log("Attack performed");
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -54,6 +82,16 @@ public class Player_Movement : MonoBehaviour
         else
         {
             inputDirection = new Vector3(h, 0, v).normalized;
+        }
+
+        if (animator != null)
+        {
+            animator.SetFloat(runningAnimationName, inputDirection.magnitude);
+            if (inputDirection.magnitude > 0.1f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(inputDirection, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            }
         }
     }
 
